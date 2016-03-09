@@ -81,7 +81,7 @@ class Ip2location
     private static function getLocFromLocal($ip)
     {
         $reader = new Reader('GeoLite2-City.mmdb');
-        $record = $reader->city('118.28.8.8');
+        $record = $reader->city($ip);
         $province = $record->mostSpecificSubdivision->names['zh-CN'];
         $city = $record->city->names['zh-CN'];
         if ($province == $city . '市')
@@ -336,5 +336,13 @@ class Ip2location
 
         return $arr;
     }
+
+   /*利用搜狐获取ip和地区
+    *<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    *<script>
+    *   var result = returnCitySN;
+    *    var city = returnCitySN.cname;
+    *</script>
+    */ 
 
 }
